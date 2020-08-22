@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: infytel-zuul
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: thaya
+Implementation-Vendor-Id: com.infosys.infytel.zuul
+Build-Jdk: 1.8.0_242
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ZuulServer
+Created-By: Maven Integration for Eclipse
+
