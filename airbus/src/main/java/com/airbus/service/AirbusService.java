@@ -16,11 +16,6 @@ import com.airbus.entity.AirbusOrderEntity;
 import com.airbus.repository.AirbusRepository;
 import com.airbus.repository.ProjectOrderRepository;
 
-
-
-
-
-
 @Transactional
 @Service
 public class AirbusService {
@@ -47,6 +42,30 @@ public class AirbusService {
 			return airbusDTOs;
 		}
 		
+		
+		//view order
+		public List<AirbusOrderDTO> getorder(String customerid) {
+			List<AirbusOrderEntity> entity= orderrepo.findAll();
+			logger.info("Customerid in database details : {}",entity);
+			List<AirbusOrderDTO> orderList= new ArrayList<>();
+		
+			for(AirbusOrderEntity a1:entity) {		
+				if(a1.getCustomerid().equalsIgnoreCase(customerid) ){
+				
+				
+				logger.info("Customer id in database details : {}", a1.getCustomerid());
+				AirbusOrderDTO order = AirbusOrderDTO.valueOf(a1);
+				orderList.add(order);
+				logger.info("order present in database details : {}",order);
+				}
+			}	
+			return orderList;
+			
+			
+			
+		}
+		
+		
 		// To get a air bus based on air bus name
 		public AirbusDTO getAirbus(String modelName) {
 			AirbusDTO airbusDTO = null;
@@ -65,7 +84,7 @@ public class AirbusService {
 		public List<AirbusDTO> getModel(){
 			List<AirbusEntity> model= airbusRepo.findAll();
 			List<AirbusDTO> modelList= new ArrayList<>();
-			System.out.print("2");
+			
 			for(AirbusEntity a1:model) {
 				AirbusDTO airbusModel = AirbusDTO.valueOf(a1);
 				modelList.add(airbusModel);
@@ -80,21 +99,21 @@ public class AirbusService {
 			if(entity.isPresent()) {
 				AirbusEntity airbus= entity.get();
 				model=AirbusDTO.valueOf(airbus);
-				System.out.println(model);
+				logger.info("Customer id in database details : {}", model);
 				}
 			
 			return model;
 		}
+		
+		//create order
 		public void order(AirbusOrderDTO order) throws Exception {
 			Optional<AirbusEntity> entity=airbusRepo.findById(order.getQuotationmodelno());
-			System.out.println(entity);
+			
 			if(entity.isPresent()) {
 				if(order.getQuotationmodelno().equals(entity.get().getManufactureModelNo())) {
-					System.out.println("service");
-					AirbusDTO model=AirbusDTO.value(entity);
-					System.out.println(model+"model");
-					AirbusOrderEntity Order= order.createEntity(model);
-					System.out.println(order+"order");
+					
+					AirbusDTO model=AirbusDTO.value(entity);					
+					AirbusOrderEntity Order= order.createEntity(model);					
 					orderrepo.save(Order);
 				}
 			}else {
@@ -102,6 +121,8 @@ public class AirbusService {
 			}
 			
 		}
+		
+		//delete order
 		public void deleteOrder(String orderid) throws Exception {
 			Optional<AirbusOrderEntity> entity= orderrepo.findById(orderid);
 			if(entity.isPresent()) {
@@ -111,6 +132,9 @@ public class AirbusService {
 			}
 		}
 
+	
+
+		
 	}
 
 

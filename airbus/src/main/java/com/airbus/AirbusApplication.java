@@ -1,15 +1,13 @@
 package com.airbus;
 
 import org.springframework.boot.SpringApplication;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.client.RestTemplate;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @SpringBootApplication
-@ComponentScan
+@EnableSwagger2
 @EnableDiscoveryClient
 public class AirbusApplication {
 
@@ -17,10 +15,7 @@ public class AirbusApplication {
 		SpringApplication.run(AirbusApplication.class, args);
 	}
 	
-	//@Bean
-	   //public RestTemplate getRestTemplate() {
-	     //return new RestTemplate();
-	   //}
+
 	
 		
 

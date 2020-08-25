@@ -2,8 +2,6 @@ package com.airbus.dto;
 
 import com.airbus.entity.AirbusOrderEntity;
 
-//import Airbus.airbus.DTO.AirbusDTO;
-
 public class AirbusOrderDTO {
 	int orderid;
 	String quotationmodelno;
@@ -53,10 +51,19 @@ public class AirbusOrderDTO {
 		entity.setCustomerid(this.customerid);
 		entity.setCustomername(this.customername);
 		entity.setEmail(this.email);
-		//entity.setOrderid(1);
 		entity.setPrice(p1.getUnitPrice());
 		entity.setQuotationmodelno(this.quotationmodelno);
 		return entity;
+	}
+	public static AirbusOrderDTO valueOf(AirbusOrderEntity a1) {
+		AirbusOrderDTO order= new AirbusOrderDTO();
+		order.setCustomerid(a1.getCustomerid());
+		order.setOrderid(a1.getOrderid());
+		order.setCustomername(a1.getCustomername());
+		order.setEmail(a1.getEmail());
+		order.setQuotationmodelno(a1.getQuotationmodelno());
+		order.setPrice(a1.getPrice());
+		return order;
 	}
 
 
