@@ -1,3 +1,3 @@
 # Infy_Store
 
-It is an sample of store selling aeroplanes.
+Infy Store is an application used within a aerospace store. 
